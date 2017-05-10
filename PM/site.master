@@ -1,0 +1,135 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="CAR_CARsite" %>
+
+<!DOCTYPE html />
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+    <title>PM</title>
+    <link href="Style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="print.css" type="text/css" media="print" />
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .style1
+        {
+            font-family: Impact;
+        }
+    </style>
+</head>
+<body>
+    <form id="Form1" runat="server">
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <h1 class="style1">
+                    Preventive Maintenance, Clean & Lube
+                </h1>
+            </div>
+            <div class="style1">
+                <a href="http://tuxania/">
+                <asp:Image ID="Image1" runat="server" Height="51px"
+                ImageUrl="~/images/DT-BAA Logo.jpg" Width="235px" ImageAlign="Right" 
+                    BorderStyle="None" ToolTip="Click to go to ALL-TRANET" /></a>
+                
+           
+            </div>
+            <div class="clear hideSkiplink menu">
+            <asp:Menu ID="Menu1" runat="server" IncludeStyleBlock="False" 
+                Orientation="Horizontal" StaticPopOutImageTextFormatString="" 
+                StaticSubMenuIndent="16px">
+                <Items>
+                    <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home" Value="Home">
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Maintain Machine Schedules" Value="Maintain Machine Schedules" 
+                        NavigateUrl="~/PMSchedule.aspx">
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Enter PM Sheets" Value="Enter PM Sheets" 
+                        NavigateUrl="~/PMEnterPM1.aspx">
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Print PM Sheets" Value="Print PM Sheets" 
+                        NavigateUrl="~/PMDueThisWeek.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="Reports" Value="Reports">
+                        <asp:MenuItem Text="Machines Missing Schedules" 
+                            Value="Machines Missing Schedules" NavigateUrl="~/PMMissingSchedule.aspx">
+						</asp:MenuItem>
+
+						<asp:MenuItem Text="Machines Completed Last Week" Value="Machines Completed Last Week" 
+                            NavigateUrl="~/PMCompletedPreviousWeek.aspx">
+                        </asp:MenuItem>	
+
+                        <asp:MenuItem Text="Machines Due This Week" Value="Machines Due This Week" 
+                            NavigateUrl="~/PMDueThisWeek.aspx">
+                        </asp:MenuItem>
+
+						<asp:MenuItem Text="Machines Due Week 2" Value="PM Due Week 2"
+                            NavigateUrl="~/PMDueWeek2.aspx">
+                        </asp:MenuItem>
+
+                        <asp:MenuItem Text="Machines Due Week 3" Value="PM Due Week 3"
+                            NavigateUrl="~/PMDueWeek3.aspx">
+                        </asp:MenuItem>
+
+                        <asp:MenuItem Text="Machines Past Due" Value="Machines Past Due" 
+                            NavigateUrl="~/PMMachinesPastDue.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="Machine History" Value="Machine History" 
+                            NavigateUrl="~/PMMachineHistorySelect.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="PM Hours vs Work Order Hours" 
+                            Value="PM Hours vs Work Order Hours" 
+                            NavigateUrl="~/MWOvsPMHoursSelect.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="PM Hours By Division" 
+                            Value="PM Hours By Division" 
+                            NavigateUrl="~/PMHoursSelect.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="PM Efficiency" Value="PM Efficiency" 
+                            NavigateUrl="~/PMEfficiencyReport.aspx" />
+                    </asp:MenuItem>
+                </Items>
+            </asp:Menu>
+        </div>
+    </div>
+
+    <div class="main">
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+
+        <div class="footer">©Bend All Automotive 2012</div>
+
+    </div>
+    </form>
+</body>
+<script type="text/javascript">
+    var gridview = document.getElementsByTagName("table");
+
+    for (var i = 0; i < gridview.length; i++) {
+
+        for (var x = 0; x < gridview[i].rows.length; x++) {
+            var tablerow = gridview[i].rows[x];
+            for (var j = 0; j < tablerow.cells.length; j++) {
+                var tableCell = tablerow.cells[j];
+                if (tableCell.offsetWidth > 400) {
+                    tableCell.className = "break";
+                }
+            }
+        }
+
+        var width = gridview[i].clientWidth;
+        var screenWidth = window.innerWidth;
+
+
+        if (width > 960) {
+            gridview[i].style.position = "absolute";
+            width = gridview[i].clientWidth; //refind width once changed position type
+            if (width > screenWidth) {
+                gridview[i].style.left = 0 + 'px';
+
+            }
+            else {
+                gridview[i].style.left = "50%";
+                gridview[i].style.marginLeft = ((width / 2) * -1) + 'px';
+            }
+        }
+    }
+</script>
+</html>

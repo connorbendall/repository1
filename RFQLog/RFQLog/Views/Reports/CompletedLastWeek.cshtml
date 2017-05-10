@@ -1,0 +1,51 @@
+﻿@model RFQLog.Models.RFQLogListModel
+
+<label style="float:right; margin:5px 5px 5px 5px"># of Records Retrieved: @Session["recordsReturned"]</label>
+<table class="report">
+    <caption>
+        <h4>RFQs Completed Last Week</h4>
+    </caption>
+    <thead>
+        <tr><th>RFQ#</th><th>Customer Name</th><th>Requester</th><th>Request Date</th><th>Due Date</th><th>Closed Date</th><th>Status</th></tr>
+    </thead>
+
+    @for (int i = 0; i < Model.RFQs.Count; ++i)
+    {
+        <tr>
+            <td>@Model.RFQs[i].RFQLogNumber</td>
+
+            <td>@Model.RFQs[i].CustomerName</td>
+
+            <td>@Model.RFQs[i].RequesterName</td>
+
+            @if (Model.RFQs[i].QuoteRequestDate.HasValue)
+            {
+                @Html.Raw("<td>" + Model.RFQs[i].QuoteRequestDate.Value.ToShortDateString() + "</td>")
+            }
+            else
+            {
+                @Html.Raw("<td></td>")
+            }
+
+            @if (Model.RFQs[i].QuoteDueDate.HasValue)
+            {
+                @Html.Raw("<td>" + Model.RFQs[i].QuoteDueDate.Value.ToShortDateString() + "</td>")
+            }
+            else
+            {
+                @Html.Raw("<td></td>")
+            }
+
+            @if (Model.RFQs[i].ClosedDate.HasValue)
+            {
+                @Html.Raw("<td>" + Model.RFQs[i].ClosedDate.Value.ToShortDateString() + "</td>")
+            }
+            else
+            {
+                @Html.Raw("<td></td>")
+            }
+
+            <td>@Model.RFQs[i].Status</td>
+        </tr>
+    }
+</table>

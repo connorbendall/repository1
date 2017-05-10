@@ -1,0 +1,136 @@
+﻿@model RFQLog.Models.RFQLogModel
+
+@using RFQLog.Models
+@{
+    RFQLogListModel results = ViewData["SearchResults"] as RFQLogListModel;
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset>
+        <legend>Search RFQs</legend>
+
+        <fieldset>
+            <legend>Search By RFQ#</legend>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="inputGroup">
+                @Html.LabelFor(model => model.RFQLogNumber, "RFQLog#", htmlAttributes: new { @class = "inputLabel" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.RFQLogNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    <input type="submit" value="Search" formaction="Search/SearchById" formmethod="post" class="my-btn-default" style="display:inline; margin:5px 5px 5px 5px;" />
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Filter</legend>
+
+            <table>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.RequestType, "Request Type:", htmlAttributes: new { @class = "inputLabel" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(model => model.RequestType, new SelectList(RFQLog.Helpers.Lists.RequestTypeSearchOptions), new { onchange = @"form.submit();" })
+                    </td>
+                    <td>
+                        @Html.LabelFor(model => model.RequesterName, "Requester:", htmlAttributes: new { @class = "inputLabel" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(model => model.RequesterName, new SelectList(ViewBag.Requesters), new { onchange = @"form.submit();" })                        
+                    </td>                                        
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.CustomerName, "Customer:", htmlAttributes: new { @class = "inputLabel" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(model => model.CustomerName, new SelectList(ViewBag.CustomerNames), new { onchange = @"form.submit();" })
+                    </td>
+
+                    <td>
+                        @Html.LabelFor(model => model.Division, "Division:", htmlAttributes: new { @class = "inputLabel" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(model => model.Division, new SelectList(ViewBag.Divisions), new { onchange = @"form.submit();" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Status, "Status:", htmlAttributes: new { @class = "inputLabel" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(model => model.Status, new SelectList(RFQLog.Helpers.Lists.StatusSearchOptions), new { onchange = @"form.submit();" })
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>Results</legend>
+
+            <table class="report">
+                <thead>
+                    <tr><th>RFQ#</th><th>Request Type</th><th>Requested By</th><th>Customer Name</th><th>Division</th><th>Request date</th><th>Due Date</th><th>Status</th><th>Closed Date</th></tr>
+                </thead>
+
+                @if(results.RFQs.Count > 0)
+                {
+                    for (int i = 0; i < results.RFQs.Count; ++i)
+                    {
+                        <tbody>
+                            <tr>
+
+                                <td>@Html.Raw("<a href='/RFQLog/RFQLog/Details/" + @results.RFQs[i].RFQLogNumber.ToString() + "'>" + @results.RFQs[i].RFQLogNumber.ToString() + "</a>")</td>
+
+                                <td>@results.RFQs[i].RequestType</td>
+
+                                <td>@results.RFQs[i].RequesterName</td>
+
+                                <td>@results.RFQs[i].CustomerName</td>
+
+                                <td>@results.RFQs[i].Division</td>
+
+                                @if (results.RFQs[i].QuoteRequestDate.HasValue)
+                                {
+                                    @Html.Raw("<td>" + results.RFQs[i].QuoteRequestDate.Value.ToShortDateString() + "</td>")
+                                }
+                                else
+                                {
+                                    @Html.Raw("<td></td>")
+                                }
+
+                                @if (results.RFQs[i].QuoteDueDate.HasValue)
+                                {
+                                    @Html.Raw("<td>" + results.RFQs[i].QuoteDueDate.Value.ToShortDateString() + "</td>")
+                                }
+                                else
+                                {
+                                    @Html.Raw("<td></td>")
+                                }
+
+                                <td>@results.RFQs[i].Status</td>
+
+                                @if (results.RFQs[i].ClosedDate.HasValue)
+                                {
+                                    @Html.Raw("<td>" + results.RFQs[i].ClosedDate.Value.ToShortDateString() + "</td>")
+                                }
+                                else
+                                {
+                                    @Html.Raw("<td></td>")
+                                }
+                            </tr>
+                        </tbody>
+                    }
+                }
+                
+            </table>
+        </fieldset>
+
+
+    </fieldset>
+}

@@ -1,0 +1,94 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title></title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+
+
+    <script type="text/javascript">
+        var timer;
+        var timerCount = 0;
+        var op = 100;
+        function redirectToAllTranet() {
+            window.location = "http://tuxania/";
+        }
+
+        function StartTimer() {
+            timer = setInterval(function () { myTimer() }, 600);
+        }
+
+        function HideDiv() {
+            document.getElementById("overlay").style.visibility = "hidden";
+        }
+
+        function myTimer() {
+            document.getElementById("overlay").style.filter = "alpha(opacity=" + op + ")"
+            op = (op - 15);
+
+            if (op <= 0) {
+                document.getElementById("overlay").style.visibility = "hidden";
+                myStopFunction();
+            }
+        }
+
+        function myStopFunction() {
+            clearInterval(timer);
+        }
+    </script>
+
+    <style type="text/css">
+        .style1
+        {
+            font-family: Impact;
+        }
+    </style>
+</head>
+<body>
+    <form runat="server">
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <h1>
+                    <span class="style1">
+                <em><strong>I.T. Ticket System</strong></em></span>   
+                </h1>
+            </div>
+
+           <div class="style1">
+                <a href="http://tuxania/">
+                    <asp:Image ID="Image1" runat="server" Height="51px"
+                    ImageUrl="~/images/DT-BAA Logo.jpg" Width="235px" ImageAlign="Right" 
+                    BorderStyle="None" ToolTip="Click to go to ALL-TRANET"/>
+                </a>
+
+            <%--    <div class="loading-overlay" id="overlay" onclick="redirectToAllTranet()" runat="server">
+                 <p style="font-family:Arial;">Click logo to go to <br /> All-TRANET </p>
+                </div>--%>
+            </div>
+            <div class="clear hideSkiplink">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        
+                        
+                    </Items>
+                </asp:Menu>
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+       <%-- <div class="clear">
+
+        </div>--%>
+    
+        <div class="footer">
+            <strong style="color: #FFFFFF">©BEND-All AUTOMOTIVE 2012 </strong> 
+        </div>
+    </div>
+    </form>
+</body>
+</html>

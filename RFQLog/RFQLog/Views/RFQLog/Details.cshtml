@@ -1,0 +1,188 @@
+﻿@model RFQLog.Models.RFQLogModel
+
+<fieldset>
+    <legend>RFQ Log Details</legend>
+
+    <table style="width:100%">
+        <tr>
+            <td class="col-lg-6">
+                <label style="margin-left:5px; color:limegreen">@Session["statusGreen"]</label>
+                <label style="margin-left:5px; color:red">@Session["statusRed"]</label>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.RFQLogNumber)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.RFQLogNumber)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.RequestType)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.RequestType)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.RequesterName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.RequesterName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CustomerName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.CustomerName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Division)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Division)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Program)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Program)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Reason)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Reason)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SOPDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SOPDate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PPAPDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PPAPDate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PartNumber)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PartNumber)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DrawingNumber)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DrawingNumber)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DrawingDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DrawingDate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.EngineeringLevel)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.EngineeringLevel)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.EstAnnualVolume)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.EstAnnualVolume)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.QuoteRequestDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.QuoteRequestDate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.QuoteDueDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.QuoteDueDate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Status)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ClosedDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ClosedDate)
+                    </dd>
+
+                </dl>
+            </td>
+
+            <td class="col-lg-6" style="vertical-align:top; float:left;">                
+
+
+                <span style="color:blue; font-weight:bold;">File List</span>
+                <br/>
+
+                @if (Model != null)
+                {
+                    if (Model.Filenames.Count != 0)
+                    {
+                        foreach (string file in Model.Filenames)
+                        {
+                            @Html.ActionLink(file, "Download", "RFQLog", new { filename = file }, new { style = "color:blue" })
+                            <br/>
+                        }
+                    }
+                    Session.Remove("postedFiles");
+                }
+            </td>
+        </tr>
+    </table>
+
+    <span style="color:green">@Html.Raw(ViewBag.Message)</span>
+
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.RFQLogNumber }, htmlAttributes: new { @class = "my-btn-default", @style = "margin:5px 5px 5px 15%;" })
+    </div>
+    <br />
+
+</fieldset>

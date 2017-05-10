@@ -1,0 +1,366 @@
+﻿/* DEFAULTS
+----------------------------------------------------------*/
+body   
+{
+    background: #b6b7bc;
+    font-size: .80em;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    color: black;
+}
+
+a:link, a:visited
+{
+    color: #034af3;
+}
+
+a:hover
+{
+    color: #1d60ff;
+    text-decoration: none;
+}
+
+a:active
+{
+    color: #034af3;
+}
+
+p
+{
+   /* margin-bottom: 0px;
+    line-height: 1.6em;
+    text-align: left;*/
+     margin-bottom: 25px;
+    line-height: 1.6em;
+    color: #000000;
+    height: 38px;
+}
+
+/* HEADINGS   
+----------------------------------------------------------*/
+
+h1, h2, h3, h4, h5, h6
+{
+    font-size: 1.5em;
+    color: #000000;
+    font-variant: small-caps;
+    text-transform: none;
+    font-weight: 700;
+    margin-bottom: 0px;
+}
+
+h1
+{
+    font-size: 1.6em;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+h2
+{
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+h3
+{
+    font-size: 1.2em;
+}
+
+h4
+{
+    font-size: 1.1em;
+}
+
+h5, h6
+{
+    font-size: 1em;
+}
+
+/* this rule styles <h1> and <h2> tags that are the 
+first child of the left and right table columns */
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
+{
+    margin-top: 0px;
+}
+/*FF6666 */
+.errorDiv {
+	background-color:#FF9999  ;
+		
+	display: block;
+	font-weight: bold;
+}
+
+.okDiv {
+	background-color: white;
+    display: block;
+    font-weight: normal;
+	
+}
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+.page
+{
+    width: 80%;
+    background-color: #fff;
+    min-width:50%;
+    margin: 20px auto 0px auto;
+    border: 1px solid #496077;
+}
+
+.header
+{
+    position: relative;
+    margin: 0px;
+    padding: 5px;
+    background: #B22222;
+    width: 99.5%;
+    top: 0px;
+    left: 0px;
+    height: 83px;
+}
+
+.header h1
+{
+    border-style: none;
+    border-color: inherit;
+    border-width: medium;
+    margin: 0px;
+    padding: 0px 0px 0px 10px;
+    color: #B22222;
+    line-height: 2em;
+    font-size: 2em;
+    background-color: #FFFFFF;
+    width: 1400px;
+    font-style: italic;
+    height: 51px;
+}
+
+
+
+
+.main 
+{ 
+    width: 100%;
+    height: auto; 
+    float: none;  
+    background-color: #fff;
+    margin: 1px auto 0px auto;
+    border: 1px solid #496077;
+} 
+
+
+
+.footer
+{
+    background:#B22222;
+    color: #D94B56;
+    padding: 8px 0px 0px 0px;
+    margin: 0px auto;
+    text-align: center;
+    line-height: normal;
+    height: 87px;
+    width: 100%;
+}
+
+/* TAB MENU   
+----------------------------------------------------------*/
+
+div.hideSkiplink
+{
+    background-color:#B22222;
+    width:100%;
+    height: 33px;
+}
+
+div.menu
+{
+    padding: 4px 0px 4px 8px;
+    
+}
+
+div.menu ul
+{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    width: auto;
+
+}
+
+div.menu ul li a, div.menu ul li a:visited
+{
+   background-color: #CC3333;
+    border: 1px #4e667d solid;
+    color: #dde4ec;
+    display: block;
+    line-height: 1.35em;
+    padding: 4px 20px;
+    text-decoration: none;
+    white-space: nowrap;
+
+}
+
+div.menu ul li a:hover
+{
+     background-color: #FF2400;
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+div.menu ul li a:active
+{
+   background-color: #993333;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+div.CreateTicket
+{
+    width:650px; height:auto; 
+    overflow:visible; padding-left:25px;
+    margin-top: 5px;
+}
+
+
+/* FORM ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset
+{
+    margin: 1em 0px;
+    width:98%;
+    padding: 1em;
+    border: 1px solid #ccc;
+    margin: 0px 2px 2px 0px;
+    clear: both;
+}
+
+fieldset p 
+{
+    margin: 0px 12px 10px 2px;
+}
+
+
+fieldset label.inline 
+{
+    display: inline;
+}
+
+legend 
+{
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 2px 4px 8px 1px;
+}
+
+input.textEntry 
+{
+    width: 320px;
+    border: 1px solid #ccc;
+}
+
+
+
+/* MISC  
+----------------------------------------------------------*/
+
+.clear
+{
+    clear: both;
+    height: 9px;
+}
+
+.title
+{
+    display: block;
+    float: left;
+    text-align: left;
+    width: 50%;
+}
+
+
+
+
+/*
+
+fieldset.login label, fieldset.register label, fieldset.changePassword label
+{
+    display: block;
+}
+.loginDisplay
+{
+    font-size: 1.1em;
+    display: block;
+    text-align: right;
+    padding: 10px;
+    color: White;
+    font-family: Arial;
+    font-style: italic;
+    font-weight: 700;
+    height: 19px;
+}
+
+input.passwordEntry 
+{
+    width: 320px;
+    border: 1px solid #ccc;
+}
+
+div.accountInfo
+{
+    width: 42%;
+}
+
+.loginDisplay a:link
+{
+    color: white;
+}
+
+.loginDisplay a:visited
+{
+    color: white;
+}
+
+.loginDisplay a:hover
+{
+    color: white;
+}
+
+.failureNotification
+{
+    font-size: 1.2em;
+    color: Red;
+}
+
+.bold
+{
+    font-weight: bold;
+}
+
+.submitButton
+{
+    text-align: right;
+    padding-right: 10px;
+}
+
+.cellFormatGreen
+{
+    background-color: #33FF00;
+    text-align: center;
+    color: #FFFFFF;
+    font-weight:bold;
+     
+}
+
+.cellFormatRed
+{
+    background-color: #FF3300;
+    text-align: center;
+    color: #FFFFFF;
+    font-weight:bold; 
+}
+
+*/

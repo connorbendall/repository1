@@ -1,0 +1,5 @@
+C:\Users\ckurtz\Documents\Projects\RFQLog\RFQLog\RFQLogDAL\obj\Debug\RFQLogDAL.csprojResolveAssemblyReference.cache
+C:\Users\ckurtz\Documents\Projects\RFQLog\RFQLog\RFQLogDAL\bin\Debug\RFQLogDAL.dll
+C:\Users\ckurtz\Documents\Projects\RFQLog\RFQLog\RFQLogDAL\bin\Debug\RFQLogDAL.pdb
+C:\Users\ckurtz\Documents\Projects\RFQLog\RFQLog\RFQLogDAL\obj\Debug\RFQLogDAL.dll
+C:\Users\ckurtz\Documents\Projects\RFQLog\RFQLog\RFQLogDAL\obj\Debug\RFQLogDAL.pdb

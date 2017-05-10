@@ -1,0 +1,154 @@
+﻿@model RFQLog.Models.RFQLogModel
+
+<script type="text/javascript">
+    // server builds the message, so just display it either way
+    var onSuccessOrFailure = function (result) {
+        $('#ajaxMsg').text(result);
+    }
+
+    // Code to wire up your DatePicker
+    $(function () {
+        // This will make every element with the class "date-picker" into a DatePicker element
+        $('.date-picker').datepicker();
+    })
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset>
+        <legend>Submit New RFQ Log</legend>
+
+        <label style="margin-left:5px; color:red">@Session["statusRed"]</label>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="inputGroup">
+            @Html.LabelFor(model => model.RequestType, "Request Type", htmlAttributes: new { @class = "inputLabel" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.RequestType, new SelectList(RFQLog.Helpers.Lists.RequestTypeOptions), "PLEASE SELECT")
+                @Html.ValidationMessageFor(model => model.RequestType, "", new { @style = "color:red;", @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="inputGroup">
+            @Html.LabelFor(model => model.RequesterName, "Requested By", htmlAttributes: new { @class = "inputLabel" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.RequesterName, new SelectList(ViewBag.Requesters))
+                @Html.ValidationMessageFor(model => model.RequesterName, "", new { @style = "color:red;", @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="inputGroup">
+            @Html.LabelFor(model => model.CustomerName, "Customer Name", htmlAttributes: new { @class = "inputLabel" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CustomerName, new SelectList(ViewBag.CustomerNames))
+                @Html.ValidationMessageFor(model => model.CustomerName, "", new { @style = "color:red;", @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="inputGroup">
+            @Html.LabelFor(model => model.Division, htmlAttributes: new { @class = "inputLabel" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Division, new SelectList(ViewBag.Divisions))
+                @Html.ValidationMessageFor(model => model.Division, "", new { @style = "color:red;", @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="inputGroup">
+            @Html.LabelFor(model => model.Program, htmlAttributes: new { @class = "inputLabel" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Program, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Program, "", new { @style = "color:red;", @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="inputGroup">
+            @Html.LabelFor(model => model.Reason, htmlAttributes: new { @class = "inputLabel" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Reason, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Reason, "", new { @style = "color:red;", @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="inputGroup">
+            @Html.LabelFor(model => model.SOPDate, "SOP Date", htmlAttributes: new { @class = "inputLabel" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SOPDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SOPDate, "", new { @style = "color:red;", @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="inputGroup">
+            @Html.LabelFor(model => model.PPAPDate, "PPAP Date", htmlAttributes: new { @class = "inputLabel" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PPAPDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PPAPDate, "", new { @style = "color:red;", @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="inputGroup">
+            @Html.LabelFor(model => model.PartNumber, "Part Number", htmlAttributes: new { @class = "inputLabel" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PartNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PartNumber, "", new { @style = "color:red;", @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="inputGroup">
+            @Html.LabelFor(model => model.DrawingNumber, "Drawing Number", htmlAttributes: new { @class = "inputLabel" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DrawingNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DrawingNumber, "", new { @style = "color:red;", @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="inputGroup">
+            @Html.LabelFor(model => model.DrawingDate, "Drawing Date", htmlAttributes: new { @class = "inputLabel" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DrawingDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DrawingDate, "", new { @style = "color:red;", @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="inputGroup">
+            @Html.LabelFor(model => model.EngineeringLevel, "Engineering Level", htmlAttributes: new { @class = "inputLabel" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EngineeringLevel, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EngineeringLevel, "", new { @style = "color:red;", @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="inputGroup">
+            @Html.LabelFor(model => model.EstAnnualVolume, "Estimated Annual Vol.", htmlAttributes: new { @class = "inputLabel" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EstAnnualVolume, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EstAnnualVolume, "", new { @style = "color:red;", @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="inputGroup">
+            @Html.LabelFor(model => model.QuoteDueDate, "Quote Due Date", htmlAttributes: new { @class = "inputLabel" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.QuoteDueDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QuoteDueDate, "", new { @style = "color:red;", @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="inputGroup">
+            @Html.LabelFor(model => model.Status, "Status", htmlAttributes: new { @class = "inputLabel" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Status, new SelectList(RFQLog.Helpers.Lists.StatusOptions))
+                @Html.ValidationMessageFor(model => model.Status, "", new { @style = "color:red;", @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="inputGroup">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit RFQ Log" class="my-btn-default" style="margin:5px 5px 5px 25%;" />
+            </div>
+        </div>
+
+    </fieldset>
+}

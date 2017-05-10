@@ -1,0 +1,215 @@
+﻿@using RFQLog.Models;
+@{
+    RFQStatsListModel Monthly = ViewData["Monthly"] as RFQStatsListModel;
+    RFQStatsListModel Weekly = ViewData["Weekly"] as RFQStatsListModel;
+}
+<script>
+    $(document).ready(function () {
+        var url = '@Url.Action("Index", "Home")';
+        $('a').click((function() {
+            var month = $(this).attr('id');
+            $('body').load(url, { month: month });
+        }))
+});
+</script>
+
+<h1 style="margin:10px;">RFQ Stats</h1>
+
+<fieldset>
+    <legend>Weekly</legend>
+    <table class="report">
+        <caption>
+            <h4>Weekly Reports for @Session["monthName"] </h4>
+        </caption>
+        <thead>
+            <tr><th></th><th>Week 1</th><th>Week 2</th><th>Week 3</th><th>Week 4</th></tr>
+        </thead>
+
+        @Html.Raw("<tbody>")
+        @Html.Raw("<tr>")
+
+        @Html.Raw("<td>")
+        @Html.Raw("<table style='border:1px;'>")
+        @Html.Raw("<tr>")
+        @Html.Raw("<td style='font-weight:bold; float:right;'>")
+        Open
+        @Html.Raw("</td>")
+        @Html.Raw("</tr>")
+
+        @Html.Raw("<tr>")
+        @Html.Raw("<td style='font-weight:bold; float:right;'>")
+        Late
+        @Html.Raw("</td>")
+        @Html.Raw("</tr>")
+
+        @Html.Raw("<tr>")
+        @Html.Raw("<td style='font-weight:bold; float:right;'>")
+        % Completed OnTime
+        @Html.Raw("</td>")
+        @Html.Raw("</tr>")
+
+        @Html.Raw("<tr>")
+        @Html.Raw("<td style='font-weight:bold; float:right;'>")
+        Avg Days to Completion
+        @Html.Raw("</td>")
+        @Html.Raw("</tr>")
+
+        @Html.Raw("<tr>")
+        @Html.Raw("<td style='font-weight:bold; float:right;'>")
+        Days Late
+        @Html.Raw("</td>")
+        @Html.Raw("</tr>")
+        @Html.Raw("</table>")
+        @Html.Raw("</td>")
+
+
+        @if(Weekly != null)
+        {
+            for (int i = 0; i < Weekly.StatsList.Count; ++i)
+            {
+                @Html.Raw("<td>")
+                @Html.Raw("<table class='report'>")
+                @Html.Raw("<tr>")
+                @Html.Raw("<td>")
+                @Weekly.StatsList[i].OpenRFQs
+                @Html.Raw("</td>")
+                @Html.Raw("</tr>")
+
+                @Html.Raw("<tr>")
+                @Html.Raw("<td>")
+                @Weekly.StatsList[i].LateRFQs
+                @Html.Raw("</td>")
+                @Html.Raw("</tr>")
+
+                @Html.Raw("<tr>")
+                @Html.Raw("<td>")
+                @Weekly.StatsList[i].PercentageRFQsCompleted
+                @Html.Raw("</td>")
+                @Html.Raw("</tr>")
+
+                @Html.Raw("<tr>")
+                @Html.Raw("<td>")
+                @Weekly.StatsList[i].AvgDaysToComplete
+                @Html.Raw("</td>")
+                @Html.Raw("</tr>")
+
+                @Html.Raw("<tr>")
+                @Html.Raw("<td>")
+                @Weekly.StatsList[i].DaysLate
+                @Html.Raw("</td>")
+                @Html.Raw("</tr>")
+                @Html.Raw("</table>")
+                @Html.Raw("</td>")
+            }
+        }
+        
+        
+        @Html.Raw("</tr>")
+        @Html.Raw("</tbody>")
+
+    </table>
+</fieldset>
+
+<fieldset>
+    <legend>Monthly</legend>
+    <table class="report">
+        <thead>
+            <tr>
+                <th></th>
+                <th><a id="1">Jan</a></th>
+                <th><a id="2">Feb</a></th>
+                <th><a id="3">Mar</a></th>
+                <th><a id="4">Apr</a></th>
+                <th><a id="5">May</a></th>
+                <th><a id="6">June</a></th>
+                <th><a id="7">July</a></th>
+                <th><a id="8">Aug</a></th>
+                <th><a id="9">Sept</a></th>
+                <th><a id="10">Oct</a></th>
+                <th><a id="11">Nov</a></th>
+                <th><a id="12">Dec</a></th>
+            </tr>
+        </thead>
+
+
+        @Html.Raw("<tbody>")
+        @Html.Raw("<tr>")
+
+        @Html.Raw("<td>")
+        @Html.Raw("<table style='border:1px;'>")
+        @Html.Raw("<tr>")
+        @Html.Raw("<td style='font-weight:bold; float:right;'>")
+        Open
+        @Html.Raw("</td>")
+        @Html.Raw("</tr>")
+
+        @Html.Raw("<tr>")
+        @Html.Raw("<td style='font-weight:bold; float:right;'>")
+        Late
+        @Html.Raw("</td>")
+        @Html.Raw("</tr>")
+
+        @Html.Raw("<tr>")
+        @Html.Raw("<td style='font-weight:bold; float:right;'>")
+        % Completed OnTime
+        @Html.Raw("</td>")
+        @Html.Raw("</tr>")
+
+        @Html.Raw("<tr>")
+        @Html.Raw("<td style='font-weight:bold; float:right;'>")
+        Avg DaysToComp
+        @Html.Raw("</td>")
+        @Html.Raw("</tr>")
+
+        @Html.Raw("<tr>")
+        @Html.Raw("<td style='font-weight:bold; float:right;'>")
+        Days Late
+        @Html.Raw("</td>")
+        @Html.Raw("</tr>")
+        @Html.Raw("</table>")
+        @Html.Raw("</td>")
+
+        @if (Monthly != null)
+        {
+            for (int i = 0; i < Monthly.StatsList.Count; ++i)
+            {
+                @Html.Raw("<td>")
+                @Html.Raw("<table>")
+                @Html.Raw("<tr>")
+                @Html.Raw("<td>")
+                @Monthly.StatsList[i].OpenRFQs
+                @Html.Raw("</td>")
+                @Html.Raw("</tr>")
+
+                @Html.Raw("<tr>")
+                @Html.Raw("<td>")
+                @Monthly.StatsList[i].LateRFQs
+                @Html.Raw("</td>")
+                @Html.Raw("</tr>")
+
+                @Html.Raw("<tr>")
+                @Html.Raw("<td>")
+                @Monthly.StatsList[i].PercentageRFQsCompleted
+                @Html.Raw("</td>")
+                @Html.Raw("</tr>")
+
+                @Html.Raw("<tr>")
+                @Html.Raw("<td>")
+                @Monthly.StatsList[i].AvgDaysToComplete
+                @Html.Raw("</td>")
+                @Html.Raw("</tr>")
+
+                @Html.Raw("<tr>")
+                @Html.Raw("<td>")
+                @Monthly.StatsList[i].DaysLate
+                @Html.Raw("</td>")
+                @Html.Raw("</tr>")
+                @Html.Raw("</table>")
+                @Html.Raw("</td>")
+            }
+        }
+        
+        @Html.Raw("</tr>")
+        @Html.Raw("</tbody>")
+    </table>
+</fieldset>

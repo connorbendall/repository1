@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>@ViewBag.Title RFQ Log</title>
+
+    <!-- Required jQuery and jQuery UI Javascript references -->
+    @Styles.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/jqueryui")
+    @Styles.Render("~/Content/Site.css")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
+
+    
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <h1 class="style1">Request For Quote Log System</h1>
+            </div>
+            <div class="style1">
+                <a href="http://tuxania/">
+                    <img src="/Images/DT-BAA Logo.jpg" title="Click to go to ALL-TRANET" alt="" style="height:51px; width:235px; float:right; border-style:none;" />
+                </a>
+            </div>
+            <div class="clear hideSkiplink menu">
+                <div id="Menu1" style="float:left;">
+                    <ul class="ulStatic" tabindex="0" role="menubar">
+                        <li role="menuitem" class="liStatic">@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li role="menuitem" class="liStatic">
+                            <div class="dropdown">
+                                <button class="dropbtn">Submit/View</button>
+                                <div class="dropdown-content">
+                                    @Html.ActionLink("Submit New RFQ Log", "Create", "RFQLog")
+                                    @Html.ActionLink("Search", "Index", "Search")
+                                </div>
+                            </div>
+                        </li>
+                        <li role="menuitem" class="liStatic">
+                            <div class="dropdown">
+                                <button class="dropbtn">Reports</button>
+                                <div class="dropdown-content">
+                                    @Html.ActionLink("All Open RFQs", "AllOpenRFQs", "Reports")
+                                    @Html.ActionLink("Completed Last Week", "CompletedLastWeek", "Reports")
+                                    @Html.ActionLink("Passed Due Last Week", "PassedDueLastWeek", "Reports")
+                                </div>
+                            </div>
+                        </li>
+                        @if (@Session["loginStatus"] != null)
+                        {
+                            if (@Session["loginStatus"] == "logged in")
+                            {
+                                <li role="menuitem" class="liStatic">@Html.ActionLink("Logout", "Logout", "Account")</li>
+                            }
+                            else
+                            {
+                                <li role="menuitem" class="liStatic">@Html.ActionLink("Admin", "Login", "Account")</li>
+                            }
+                        }
+                        else
+                        {
+                            <li role="menuitem" class="liStatic">@Html.ActionLink("Admin", "Login", "Account")</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - BendAll Automotive</p>
+            </footer>
+        </div>
+     </div>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

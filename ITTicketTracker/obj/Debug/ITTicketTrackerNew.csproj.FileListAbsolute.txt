@@ -1,0 +1,1 @@
+c:\users\ckurtz\documents\visual studio 2015\Projects\ITTicketTrackerNew\ITTicketTrackerNew\obj\Debug\ITTicketTrackerNew.csprojResolveAssemblyReference.cache
